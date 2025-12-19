@@ -28,9 +28,9 @@ Unlike passive dashboards that only show charts, Sentinel acts as an active **"F
 ```mermaid
 graph LR
     A[Live Data Stream] --> B(FastAPI Endpoint)
-    B --> C{Anomaly Detector (Z-Score)}
+    B --> C{"Anomaly Detector (Z-Score)"}
     C -- Normal --> D[Log Metric]
-    C -- Anomaly (>2.5σ) --> E[Gemini 2.5 RAG Agent]
+    C -- "Anomaly (>2.5σ)" --> E[Gemini 2.5 RAG Agent]
     E --> F[Retrieve Error Logs]
     F --> G[Generate Incident Report]
 ```
