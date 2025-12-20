@@ -4,6 +4,7 @@
 ![FastAPI](https://img.shields.io/badge/Framework-FastAPI-green.svg)
 ![AI](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-purple)
 ![Focus](https://img.shields.io/badge/Focus-MLOps%20%26%20Drift-orange)
+[![Render](https://img.shields.io/badge/Render-Live_Deployment-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://sentinel-mlops.onrender.com/docs)
 
 ## 📋 Abstract
 **Sentinel** is an autonomous MLOps monitoring agent designed to detect data drift and system anomalies in real-time.
@@ -74,6 +75,19 @@ Send a POST request to `/monitor` with a high CPU value to trigger the AI:
 > **Status:** CRITICAL
 > **Investigation:** "Root Cause: Unauthorized cryptocurrency mining activity (`minerd`) detected. Recommended Fix: Terminate process immediately."
 
+## 🔴 Live Demo
+**Don't just read the code—interact with the Agent live.**
+
+I have deployed the full microservice to the cloud. You can test the Anomaly Detection engine and the Gemini RAG Agent directly through the Swagger UI.
+
+👉 **[Access the Live Sentinel API Here](https://sentinel-mlops.onrender.com/docs)**
+
+**How to test it:**
+1.  Click the link above.
+2.  Click the green **`POST /monitor`** bar.
+3.  Click **Try it out**.
+4.  Paste the "Attack Simulation" JSON (CPU Usage: 900).
+5.  Click **Execute** and watch the Agent generate a Critical Incident Report in real-time.
 ---
 
 ## 👨‍🔬 Author
