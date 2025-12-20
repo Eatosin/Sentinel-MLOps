@@ -1,27 +1,29 @@
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from pathlib import Path
 
-# --- 1. ROBUST KEY LOADING (The Fix) ---
-# Get the folder where THIS script is located
-current_folder = Path(__file__).parent
-env_path = current_folder / ".env"
-
-print(f"🔍 Looking for .env at: {env_path}")
-
-# Force load that specific file
-load_dotenv(dotenv_path=env_path)
+# --- CLOUD-READY KEY LOADING ---
+# 1. Try to load from environment (Cloud/Render)
 api_key = os.getenv("GEMINI_API_KEY")
 
+# 2. If not found, try loading from local .env file (Phone/Local)
 if not api_key:
-    print("❌ CRITICAL ERROR: API Key still not found.")
-    print("   Please check that the file is named exactly '.env' (with the dot).")
-    print("   And that inside it says: GEMINI_API_KEY=your_key_here")
-    exit() # Stop here if no key
+    load_dotenv()
+    api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    # If still missing, we don't crash, we just warn (so the app can at least start)
+    print("⚠️ Warning: GEMINI_API_KEY not found. Agent will rely on environment variables.")
 else:
-    print("✅ API Key successfully loaded!")
     genai.configure(api_key=api_key)
+
+# --- MODEL CONFIGURATION ---
+try:
+    model = genai.GenerativeModel('gemini-2.5-flash')
+except:
+    model = genai.GenerativeModel('gemini-pro')
+    
+# ... (Rest of the code remains the same: class SentinelAgent...)
 
 # --- 2. MODEL CONFIGURATION (Direct) ---
 # We use the specific model you confirmed you have.
